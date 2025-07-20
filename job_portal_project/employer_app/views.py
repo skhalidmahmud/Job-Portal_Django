@@ -35,3 +35,28 @@ def jobPost(req):
         'data':data
     }
     return render(req, 'jobPost.html', context)
+
+def addJob(req):
+    profile = employerProfileModel.objects.filter(employerUser=req.user).first()
+    if not profile:
+        return redirect('updateProfiles')
+    
+    if req.method=='POST':
+        title = req.POST.get('title')
+        description = req.POST.get('description')
+        requirements = req.POST.get('requirements')
+        salary = req.POST.get('salary')
+        jobType = req.POST.get('jobType')
+        deadline = req.POST.get('deadline')
+
+        data = jobModel.objects.create(
+            employer=profile,
+            title=title,
+            description=description,
+            requirements=requirements,
+            salary=salary,
+            jobType=jobType,
+            deadline=deadline
+        )
+        return redirect('jobPost')
+    return render(req, 'addJob.html')
