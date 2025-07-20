@@ -21,6 +21,7 @@
     table {
         width: 100%;
         border-collapse: collapse;
+        border: 2px solid rgba(0, 0, 0, 0.2);
     }
 
     th {
@@ -59,20 +60,25 @@
             <th>Pending Status</th>
             <th>Action</th>
         </tr>
-
-        {% for i in data %}
-        <tr>
-            <td>{{ i.username }}</td>
-            <td>{{ i.email }}</td>
-            <td>{{ i.phone }}</td>
-            <td>{{ i.userTypes }}</td>
-            <td>{{ i.pendingStatus }}</td>
-            <td>
-                <a href="{% url 'accept' i.id %}" style="background-color: #4CAF50; color: white; padding: 8px 16px; border-radius: 4px; text-decoration: none; margin-right: 5px; display: inline-block;">Accept</a>
-                <a href="{% url 'deny' i.id %}" style="background-color: #f44336; color: white; padding: 8px 16px; border-radius: 4px; text-decoration: none; display: inline-block;">Deny</a>
-            </td>
-        </tr>
-        {% endfor %}
+        {% if data %}
+            {% for i in data %}
+            <tr>
+                <td>{{ i.username }}</td>
+                <td>{{ i.email }}</td>
+                <td>{{ i.phone }}</td>
+                <td>{{ i.userTypes }}</td>
+                <td>{{ i.pendingStatus }}</td>
+                <td>
+                    <a href="{% url 'accept' i.id %}" style="background-color: #4CAF50; color: white; padding: 8px 16px; border-radius: 4px; text-decoration: none; margin-right: 5px; display: inline-block;">Accept</a>
+                    <a href="{% url 'deny' i.id %}" style="background-color: #f44336; color: white; padding: 8px 16px; border-radius: 4px; text-decoration: none; display: inline-block;">Deny</a>
+                </td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="6" class="no-tasks">No pending accounts found.</td>
+            </tr>
+        {% endif %}
     </table>
 </div>
 
