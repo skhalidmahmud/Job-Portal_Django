@@ -5,6 +5,11 @@
     <title>Sign Up</title>
     <style>
         body { font-family: Arial, sans-serif; background: #f4f4f4; }
+        h1 {
+            text-align: center;
+            color: #333;
+            padding-top: 10px;
+        }
         .signup-container {
             width: 400px;
             margin: 40px auto;
@@ -39,6 +44,7 @@
     </style>
 </head>
 <body>
+    <h1>Welcome to Job Portal Website</h1>
     <div class="signup-container">
         <h2>Log In</h2>
 
@@ -49,7 +55,7 @@
                 {% endfor %}
             </div>
         {% endif %}
-        
+
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group">
@@ -67,10 +73,6 @@
         <div class="form-group" style="text-align: center; margin-bottom: 18px;">
             <span>Do not have an account?</span>
             <a href="{% url 'signUp' %}" style="display: inline-block; margin-left: 8px; color: #007bff; text-decoration: underline;">Sign Up</a>
-        </div>
-        <div class="form-group" style="text-align: center; margin-bottom: 18px;">
-            <span>Change Password?</span>
-            <a href="{% url 'changePassword' %}" style="display: inline-block; margin-left: 8px; color: #007bff; text-decoration: underline;">Change Password</a>
         </div>
     </div>
 </body>

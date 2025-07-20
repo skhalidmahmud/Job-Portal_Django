@@ -1,0 +1,79 @@
+{% extends "master.html" %}
+{% block nav_pending %}class="active"{% endblock nav_pending %}
+{% block body %}
+{% load static %}
+<style>
+    .container {
+        max-width: fit-content;
+        margin: 40px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 30px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .no-tasks {
+        text-align: center;
+        color: #999;
+        padding: 20px;
+    }
+</style>
+
+<div class="container">
+    <h1>Pending Account List</h1>
+    <table>
+        <tr>
+            <th>User Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>User Type</th>
+            <th>Pending Status</th>
+            <th>Action</th>
+        </tr>
+
+        {% for i in data %}
+        <tr>
+            <td>{{ i.username }}</td>
+            <td>{{ i.email }}</td>
+            <td>{{ i.phone }}</td>
+            <td>{{ i.userTypes }}</td>
+            <td>{{ i.pendingStatus }}</td>
+            <td>
+                <a href="{% url 'accept' i.id %}" style="background-color: #4CAF50; color: white; padding: 8px 16px; border-radius: 4px; text-decoration: none; margin-right: 5px; display: inline-block;">Accept</a>
+                <a href="{% url 'deny' i.id %}" style="background-color: #f44336; color: white; padding: 8px 16px; border-radius: 4px; text-decoration: none; display: inline-block;">Deny</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock body %}

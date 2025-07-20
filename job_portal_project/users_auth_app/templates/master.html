@@ -1,39 +1,62 @@
 <!DOCTYPE html>
 <html>
-<head>
-<style>
-    ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-    }
+    <head>
+        <style>
+            body {
+                font-family: 'Segoe UI', sans-serif;
+                background-color: #f5f7fa;
+                margin: 0;
+                padding: 0;
+                background:  #5682ad;
+                margin: 5px;
+            }
+            
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                background-color: #333;
+            }
 
-    li {
-    float: left;
-    }
+            li {
+                float: left;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            }
 
-    li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    }
+            li a {
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
 
-    li a:hover {
-    background-color: #111;
-    }
-</style>
-</head>
-<body>
+            li a:hover {
+                background-color: #111;
+            }
 
-{% include 'nav.html' %}
+            a.active {
+                background-color: #4CAF50;
+                color: white;
+            }
 
-{% block body %}
-    
-{% endblock body %}
+        </style>
+    </head>
+    <body>
 
-</body>
+    <ul>
+        <li><a {% block nav_home %}{% endblock nav_home %} href="{% url 'index' %}">Home</a></li>
+        {% if user.userTypes == 'Admin' %}
+        <li><a {% block nav_pending %}{% endblock nav_pending %} href="{% url 'pendingAccount' %}">Pending Account</a></li>
+        {% endif %}
+        <li><a {% block nav_change_password %}{% endblock nav_change_password %} href="{% url 'changePassword' %}">Change Password</a></li>
+        <li><a href="{% url 'logOut' %}">Log Out</a></li>
+    </ul>
+
+    {% block body %}
+        
+    {% endblock body %}
+
+    </body>
 </html>

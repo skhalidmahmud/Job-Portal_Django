@@ -1,14 +1,9 @@
 {% extends "master.html" %}
+{% block nav_home %}class="active"{% endblock nav_home %}
 {% block body %}
+{% load static %}
 
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        margin: 0;
-        padding: 20px;
-    }
-
     h1 {
         text-align: center;
         color: #333;
@@ -16,7 +11,6 @@
 
     .card-container {
         display: flex;
-        /* grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); */
         gap: 20px;
         margin-top: 30px;
         justify-content: center;
@@ -31,6 +25,10 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        width: 50%;
+        text-align: center;
+        padding-top: 50px;
+        padding-bottom: 50px;
     }
 
     .card img {
@@ -56,8 +54,7 @@
 
 </style>
 
-<h1>Welcome to Our Website, Mr. / Ms. {{user.username}}</h1>
-<!-- our website er jaiga jei project seita diye diba like To Do Website -->
+<h1>Welcome to Our Job Portal, Mr. / Ms. : <span style="color: red;"> {{user.username}}<span></h1>
 
 <div class="card-container">
     <div class="card">

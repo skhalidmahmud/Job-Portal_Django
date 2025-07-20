@@ -82,3 +82,31 @@ def changePassword(req):
                 logout(req)
                 return redirect('logIn')
     return render(req, 'user_auth/changePassword.html')
+
+@login_required(login_url='logIn')
+def pendingAccount(req):
+    data = pendingAccountModel.objects.all()
+    context={
+        'data':data
+    }
+    return render(req, 'pendingAccount.html', context)
+
+@login_required(login_url='logIn')
+def accept(req, id):
+    data = pendingAccountModel.objects.get(id=id)
+
+    user = customUserModel.objects.create_user(
+        username = data.username,
+        email = data.email,
+        phone = data.phone,
+        password = data.phone,
+        userTypes = data.userTypes,
+        )
+    user.save()
+    data.delete()
+    return redirect("pendingAccount")
+
+@login_required(login_url='logIn')
+def deny(req, id):
+    data = pendingAccountModel.objects.get(id=id).delete()
+    return redirect("pendingAccount")
