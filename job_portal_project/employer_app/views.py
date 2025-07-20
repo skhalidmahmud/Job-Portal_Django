@@ -22,3 +22,16 @@ def updateProfiles(req):
         return redirect('index')
     
     return render(req, 'updateProfiles.html', context)
+
+def jobPost(req):
+    profile = employerProfileModel.objects.filter(employerUser=req.user).first()
+    if not profile:
+        return redirect('updateProfiles')
+
+    data = jobModel.objects.filter(employer=profile).first()
+    if not data:
+        data = jobModel.objects.create(employer=profile)
+    context={
+        'data':data
+    }
+    return render(req, 'jobPost.html', context)
