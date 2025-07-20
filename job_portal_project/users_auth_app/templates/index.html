@@ -1,0 +1,72 @@
+{% extends "master.html" %}
+{% block body %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+
+    .card-container {
+        display: flex;
+        /* grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); */
+        gap: 20px;
+        margin-top: 30px;
+        justify-content: center;
+        justify-items: center;
+    }
+
+    .card {
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .card-content {
+        padding: 15px;
+    }
+
+    .card-content h3 {
+        margin: 0 0 10px 0;
+        color: #333;
+    }
+
+    .card-content p {
+        font-size: 14px;
+        color: #555;
+        overflow: hidden;
+    }
+
+</style>
+
+<h1>Welcome to Our Website, Mr. / Ms. {{user.username}}</h1>
+<!-- our website er jaiga jei project seita diye diba like To Do Website -->
+
+<div class="card-container">
+    <div class="card">
+        <div class="card-content">
+            <h3>User Name: {{ user.username }}</h3>
+            <p>Phone: {{ user.phone }}</p>
+            <p>User Type: {{ user.userTypes }}</p>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

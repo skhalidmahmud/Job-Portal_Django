@@ -1,3 +1,84 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
-# Create your views here.
+from django.contrib.auth import authenticate, login, logout
+from users_auth_app.models import *
+from django.contrib.auth.decorators import login_required 
+from django.contrib import messages
+
+@login_required(login_url='logIn')
+def index(req):
+    return render(req, 'index.html')
+
+def signUp(req):
+    if req.method=='POST':
+        username = req.POST.get('username')
+        email = req.POST.get('email')
+        phone = req.POST.get('phone')
+        userTypes = req.POST.get('userTypes')
+        
+        usernameis = customUserModel.objects.filter(username=req.POST.get('username')).exists()
+        if usernameis:
+            messages.error(req, 'Username already exists')
+            return render(req, 'user_auth/signUp.html')
+        else:
+            if userTypes == 'Admin':
+                user = customUserModel.objects.create_user(
+                    username = username,
+                    email = email,
+                    phone = phone,
+                    password = phone,
+                    userTypes = userTypes,
+                    )
+                return redirect('logIn')
+            else:
+                user = pendingAccountModel(
+                    username = username,
+                    email = email,
+                    phone = phone,
+                    userTypes = userTypes,
+                    pendingStatus = 'Pending'
+                    )
+                user.save()
+                return redirect('logIn')
+    return render(req, 'user_auth/signUp.html')
+
+def logIn(req):
+    if req.method=='POST':
+        customUser = customUserModel.objects.filter(username=req.POST.get('username')).exists()
+        pendingAccount = pendingAccountModel.objects.filter(username=req.POST.get('username')).exists()
+        if customUser:
+            Username = req.POST.get('username')
+            Password = req.POST.get('password')
+            
+            user = authenticate(req, username=Username, password=Password)
+            
+            if user is not None:
+                login(req, user)
+                return redirect('index')
+        elif pendingAccount:
+            messages.error(req, 'Do not approved admin yeat!')
+            return render(req, 'user_auth/logIn.html')
+        else:
+            messages.error(req, 'Username Do not exists')
+            return render(req, 'user_auth/logIn.html')
+        
+    return render(req, 'user_auth/logIn.html')
+
+@login_required(login_url='logIn')
+def logOut(req):
+    logout(req)
+    return redirect('logIn')
+
+@login_required(login_url='logIn')
+def changePassword(req):
+    if req.method=='POST':
+        oldPassword = req.POST.get('oldPassword')
+        newPassword = req.POST.get('newPassword')
+        confirmPassword = req.POST.get('confirmPassword')
+        if newPassword == confirmPassword:
+            if req.user.check_password(oldPassword):
+                req.user.set_password(newPassword)
+                req.user.save()
+                logout(req)
+                return redirect('logIn')
+    return render(req, 'user_auth/changePassword.html')
