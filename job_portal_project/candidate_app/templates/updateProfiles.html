@@ -1,4 +1,5 @@
 {% extends "master.html" %}
+{% block updateProfiles %}class="active"{% endblock updateProfiles %}
 {% block body %}
 {% load static %}
 
@@ -17,7 +18,7 @@
     }
     .form-group { margin-bottom: 18px; }
     label { display: block; margin-bottom: 6px; }
-    input[type="text"], input[type="date"], input[type="number"], input[type="file"], input[type="email"], input[type="password"], textarea {
+    input[type="text"], input[type="number"], input[type="file"], input[type="email"], input[type="password"], textarea {
         width: 100%;
         padding: 8px;
         border: 1px solid #ccc;
@@ -42,18 +43,26 @@
         {% csrf_token %}
 
         <div class="form-group">
-            <label for="fullName">Full Name</label>
-            <input type="text" name="fullName" id="fullName" value="{{data.fullName}}" maxlength="400" required>
+            <label for="companyName">Company Name</label>
+            <input type="text" name="companyName" id="companyName" value="{{data.companyName}}" maxlength="400" required>
         </div>
 
          <div class="form-group">
-            <label for="adress">Adress</label>
-            <input type="text" name="adress" id="adress" value="{{data.adress}}" maxlength="400" required>
+            <label for="aboutConpany">About Conpany</label>
+            <input type="text" name="aboutConpany" id="aboutConpany" value="{{data.aboutConpany}}" maxlength="400" required>
         </div>
 
-        <div class="form-group">
-            <label for="dateOfBirth">Date Of Birth</label>
-            <input type="date" name="dateOfBirth" id="dateOfBirth" value="{{data.dateOfBirth|date:'Y-m-d'}}" maxlength="400" required>
+         <div class="form-group">
+            <label for="conpanyLogo">Conpany Logo</label>
+            {% if data.conpanyLogo is None %}
+            <img src="/{{data.conpanyLogo}}"" alt="conpanyLogo" height="100px"">
+            {% endif %}
+            <input type="file" name="conpanyLogo" id="conpanyLogo">
+        </div>
+
+         <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" name="location" id="location" value="{{data.location}}" maxlength="400" required>
         </div>
     
         <button type="submit">Update</button>
