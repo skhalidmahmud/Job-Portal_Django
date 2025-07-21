@@ -2,12 +2,17 @@ from django.shortcuts import render, redirect
 
 from django.contrib.auth import authenticate, login, logout
 from users_auth_app.models import *
+from employer_app.models import *
 from django.contrib.auth.decorators import login_required 
 from django.contrib import messages
 
 @login_required(login_url='logIn')
 def index(req):
-    return render(req, 'index.html')
+    data = jobModel.objects.all()
+    context = {
+        'data':data
+    }
+    return render(req, 'index.html', context)
 
 def signUp(req):
     if req.method=='POST':
@@ -99,7 +104,7 @@ def accept(req, id):
         username = data.username,
         email = data.email,
         phone = data.phone,
-        password = data.phone,
+        password = str(data.phone),
         userTypes = data.userTypes,
         )
     user.save()

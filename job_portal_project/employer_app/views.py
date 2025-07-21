@@ -65,10 +65,6 @@ def deletejob(req, id):
     data = jobModel.objects.get(id=id).delete()
     return redirect ('jobPost')
 
-
-
-
-
 def viewjob(req,id):
     data = jobModel.objects.get(id=id)
     context={
@@ -96,4 +92,5 @@ def updatejob(req,id):
     return render(req,"updatejob.html", context)
 
 def jobApplications(req):
+    
     return render(req, 'jobApplications.html')

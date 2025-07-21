@@ -52,18 +52,64 @@
         overflow: hidden;
     }
 
+    .btn {
+        background-color: #1a73e8;
+        color: #fff;
+        padding: 12px, 24px;
+        font-size: 18px;
+        font-weight: 600;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, box-shadow 0.2s ease;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn:hover {
+        background-color: #055ace;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn:active {
+        background-color: #0a47a1;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
 </style>
 
-<h1>Welcome to Our Job Portal, Mr. / Ms. : <span style="color: red;"> {{user.username}}<span></h1>
+<h1>Welcome Job Portal, <span style="color: #ffffff;">username : </span><span style="color: red;"> {{user.username}}<span><span style="color: #ffffff;">, User Type : </span><span style="color: red;"> {{user.userTypes}}<span></h1>
 
-<div class="card-container">
-    <div class="card">
+<div class="card-container" style="flex-wrap: wrap;">
+    {% if user.userTypes == 'Candidate' %}
+    {% for job in data %}
+    {% if job.title is not None %}
+    <div class="card" style="width: 30%;">
         <div class="card-content">
-            <h3>User Name: {{ user.username }}</h3>
-            <p>Phone: {{ user.phone }}</p>
-            <p>User Type: {{ user.userTypes }}</p>
+            <h3>{{ job.title }}</h3>
+            <p><strong>Company Name:</strong> {{ job.employer.companyName }}</p>
+            <p><strong>Posted Employer:</strong> {{ job.employer.employerUser.username }}</p>
+            <p><strong>Description:</strong> {{ job.description|truncatewords:20 }}</p>
+            <p><strong>Requirements:</strong> {{ job.requirements|truncatewords:15 }}</p>
+            <p><strong>Salary:</strong> ${{ job.salary }}</p>
+            <p><strong>Type:</strong> {{ job.get_jobType_display }}</p>
+            <p><strong>Deadline:</strong> {{ job.deadline }}</p>
+            <form action="" method="POST" style="margin-top: 10px;">
+                {% comment %} {% url 'apply_job' job.id %} {% endcomment %}
+                {% csrf_token %}
+                <button type="submit" class="btn">Apply</button>
+            </form>
         </div>
     </div>
+    {% endif %}
+    {% endfor %}
+    {% else %}
+    <div class="card" style="width: 30%;">
+        <div class="card-content">
+            <h3>Username:{{ user.username }}</h3>
+            <p><strong>User Type:</strong> {{ user.userTypes }}</p>
+        </div>
+    </div>
+    {% endif %}
 </div>
 
 {% endblock body %}
