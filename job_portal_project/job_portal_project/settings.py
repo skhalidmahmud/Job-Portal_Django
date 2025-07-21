@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users_auth_app',
     'employer_app',
+    'candidate_app'
 ]
 
 MIDDLEWARE = [

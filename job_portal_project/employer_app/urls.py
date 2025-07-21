@@ -10,4 +10,6 @@ urlpatterns = [
     path('viewjob/<int:id>',viewjob,name='viewjob'),
     path('updatejob/<int:id>',updatejob,name='updatejob'),
     path('deletejob/<int:id>',deletejob,name='deletejob'),
+    
+    path('jobApplications/',jobApplications,name='jobApplications'),
 ]

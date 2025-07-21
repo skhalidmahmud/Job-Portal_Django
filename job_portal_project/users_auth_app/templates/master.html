@@ -53,6 +53,7 @@
         {% if user.userTypes == 'Employer' %}
         <li><a {% block updateProfiles %}{% endblock updateProfiles %} href="{% url 'updateProfiles' %}">Update Profile</a></li>
         <li><a {% block jobPost %}{% endblock jobPost %} href="{% url 'jobPost' %}">Jobs</a></li>
+        <li><a {% block jobApplications %}{% endblock jobApplications %} href="{% url 'jobApplications' %}">Job Applications</a></li>
         {% endif %}
         <li><a {% block nav_change_password %}{% endblock nav_change_password %} href="{% url 'changePassword' %}">Change Password</a></li>
         <li><a href="{% url 'logOut' %}">Log Out</a></li>

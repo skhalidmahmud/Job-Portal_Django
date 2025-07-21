@@ -94,3 +94,6 @@ def updatejob(req,id):
         return redirect ('jobPost')
 
     return render(req,"updatejob.html", context)
+
+def jobApplications(req):
+    return render(req, 'jobApplications.html')
