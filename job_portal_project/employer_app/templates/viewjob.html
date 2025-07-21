@@ -1,0 +1,71 @@
+{% extends "master.html" %}
+{% block body %}
+{% load static %}
+
+
+<style>
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+
+    .card-container {
+        display: flex;
+        text-align: center;
+        gap: 20px;
+        margin-top: 30px;
+        justify-content: center;
+        justify-items: center;
+    }
+
+    .card {
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .card-content {
+        padding: 15px;
+    }
+
+    .card-content h3 {
+        margin: 0 0 10px 0;
+        color: #333;
+    }
+
+    .card-content p {
+        font-size: 14px;
+        color: #555;
+        overflow: hidden;
+    }
+
+</style>
+
+<h1>Welcode : {{user.username}}</h1>
+
+<div class="card-container">
+    <div class="card">
+        <div class="card-content">
+            <h3>Title: {{ data.title }}</h3>
+            <p>Description: {{ data.description }}</p>
+            <p>Requirements: {{ data.requirements }}</p>
+            <p><b>Salary: {{ data.salary }}/=</b></p>
+            <p>Job Type: {{ data.jobType }}</p>
+            <p>Deadline: {{ data.deadline }}</p>
+            <p>Posted Date: {{ data.postedDate }}</p>
+        </div>
+    </div>
+</div>
+
+
+{% endblock body %}

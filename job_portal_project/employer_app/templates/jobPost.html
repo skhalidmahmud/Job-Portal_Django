@@ -77,22 +77,9 @@
             <td>{{ i.deadline }}</td>
             <td>{{ i.postedDate }}</td>
             <td>
-                {% comment %} <a href="{% url 'deleteToDo' i.id %}">Delete</a>
-                <a href="{% url 'viewsToDo' i.id %}">Views</a>
-                <a href="{% url 'updateToDo' i.id %}">Edit</a>
-                <!-- ami chai je just completed gulo na (!=) hole dobe
-                and done a click korle model theke status done hoye jabe  -->
-
-                <!-- ``` # model.py
-                def DoneToDo(req,id):
-                    data=toDoModel.objects.get(id=id)
-                    data.status='Completed'
-                    data.save()
-                    return redirect('listToDo')
-                ``` -->
-                {% if i.status != 'completed' %}
-                <a href="{% url 'DoneToDo' %}">Done</a>
-                {% endif %} {% endcomment %}
+                <a href="{% url 'viewjob' i.id %}">View</a>
+                <a href="{% url 'updatejob' i.id %}">Edit</a>
+                <a href="{% url 'deletejob' i.id %}">Delete</a>
             </td>
         </tr>
         {% endif %}

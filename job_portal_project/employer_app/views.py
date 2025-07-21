@@ -60,3 +60,37 @@ def addJob(req):
         )
         return redirect('jobPost')
     return render(req, 'addJob.html')
+
+def deletejob(req, id):
+    data = jobModel.objects.get(id=id).delete()
+    return redirect ('jobPost')
+
+
+
+
+
+def viewjob(req,id):
+    data = jobModel.objects.get(id=id)
+    context={
+        'data':data
+    }
+    return render(req,"viewjob.html", context)
+
+def updatejob(req,id):
+    data=jobModel.objects.get(id=id)
+    context={
+        'data':data
+    }
+    if req.method=='POST':
+        data.id=id
+        data.title=req.POST.get('title')
+        data.description=req.POST.get('description')
+        data.requirements=req.POST.get('requirements')
+        data.salary=req.POST.get('salary')
+        data.jobType=req.POST.get('jobType')
+        data.deadline=req.POST.get('deadline')
+
+        data.save()
+        return redirect ('jobPost')
+
+    return render(req,"updatejob.html", context)
