@@ -54,7 +54,7 @@
 
          <div class="form-group">
             <label for="conpanyLogo">Conpany Logo</label>
-            {% if data.conpanyLogo is not None %}
+            {% if data.conpanyLogo is None %}
             <img src="/{{data.conpanyLogo}}"" alt="conpanyLogo" height="100px"">
             {% endif %}
             <input type="file" name="conpanyLogo" id="conpanyLogo">

@@ -61,10 +61,15 @@
             <th>Posted Date</th>
             <th>Actions</th>
         </tr>
-        {% if data is not None %}
+
+        {% if data is None %}
         <td colspan="6" style="text-align: center; color: #999; padding: 20px;">No Job Post found.</td>
         {% else %}
+
         {% for i in data %}
+
+        {% if i.title is not None %}
+
         <tr>
             <td>{{ i.title }}</td>
             <td>{{ i.salary }}</td>
@@ -90,6 +95,8 @@
                 {% endif %} {% endcomment %}
             </td>
         </tr>
+        {% endif %}
+
         {% endfor %}
         {% endif %}
     </table>

@@ -28,12 +28,12 @@ def jobPost(req):
     if not profile:
         return redirect('updateProfiles')
 
-    data = jobModel.objects.filter(employer=profile).first()
-    if not data:
-        data = jobModel.objects.create(employer=profile)
+    data = jobModel.objects.filter(employer=profile)
     context={
         'data':data
     }
+    if not data:
+        data = jobModel.objects.create(employer=profile)
     return render(req, 'jobPost.html', context)
 
 def addJob(req):
