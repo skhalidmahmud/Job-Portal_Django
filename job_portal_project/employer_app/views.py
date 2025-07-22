@@ -18,28 +18,22 @@ def updateProfiles(req):
         data.location=req.POST.get('location')
 
         data.save()
-
         return redirect('index')
     
     return render(req, 'updateProfiles.html', context)
 
 def jobPost(req):
     profile = employerProfileModel.objects.filter(employerUser=req.user).first()
-    if not profile:
-        return redirect('updateProfiles')
 
     data = jobModel.objects.filter(employer=profile)
     context={
         'data':data
     }
-    if not data:
-        data = jobModel.objects.create(employer=profile)
+
     return render(req, 'jobPost.html', context)
 
 def addJob(req):
     profile = employerProfileModel.objects.filter(employerUser=req.user).first()
-    if not profile:
-        return redirect('updateProfiles')
     
     if req.method=='POST':
         title = req.POST.get('title')

@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from users_auth_app.models import *
 from employer_app.models import *
+from candidate_app.models import *
 from django.contrib.auth.decorators import login_required 
 from django.contrib import messages
 
@@ -105,7 +106,15 @@ def accept(req, id):
         email = data.email,
         phone = data.phone,
         password = str(data.phone),
-        userTypes = data.userTypes,
+        userTypes = data.userTypes
+        )
+    if data.userTypes == 'Employer':
+        data = employerProfileModel(
+            employerUser = user
+        )
+    else:
+        data = candidateProfileModel(
+            employerUser = user
         )
     user.save()
     data.delete()
