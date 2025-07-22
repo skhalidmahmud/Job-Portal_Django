@@ -65,7 +65,7 @@ def logIn(req):
             messages.error(req, 'Do not approved admin yeat!')
             return render(req, 'user_auth/logIn.html')
         else:
-            messages.error(req, 'Username Do not exists')
+            messages.error(req, 'Username do not exists or Password incurrect')
             return render(req, 'user_auth/logIn.html')
         
     return render(req, 'user_auth/logIn.html')
