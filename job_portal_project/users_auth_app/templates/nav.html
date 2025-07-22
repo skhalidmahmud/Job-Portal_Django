@@ -1,0 +1,19 @@
+<ul>
+    <li><a href="{% url 'index' %}" class = {% if request.resolver_match.url_name == 'index' %}active{% endif %}>Home</a></li>
+
+    {% if user.userTypes == 'Admin' %}
+    <li><a href="{% url 'pendingAccount' %}" class = {% if request.resolver_match.url_name == 'pendingAccount' %}active{% endif %}>Pending Account</a></li>
+    {% endif %}
+
+    {% if user.userTypes == 'Employer' %}
+    <li><a href="{% url 'employerUpdateProfiles' %}" class = {% if request.resolver_match.url_name == 'employerUpdateProfiles' %}active{% endif %}>Update Profile</a></li>
+    <li><a href="{% url 'jobPost' %}" class = {% if request.resolver_match.url_name == 'jobPost' %}active{% endif %}>Jobs</a></li>
+    <li><a href="{% url 'jobApplications' %}" class = {% if request.resolver_match.url_name == 'jobApplications' %}active{% endif %}>Job Applications</a></li>
+    {% endif %}
+
+    {% if user.userTypes == 'Candidate' %}
+    <li><a href="{% url 'candidateUpdateProfiles' %}" class = {% if request.resolver_match.url_name == 'candidateUpdateProfiles' %}active{% endif %}>Update Profile</a></li>
+    {% endif %}
+    <li><a href="{% url 'changePassword' %}" class = {% if request.resolver_match.url_name == 'changePassword' %}active{% endif %}>Change Password</a></li>
+    <li><a href="{% url 'logOut' %}" class = {% if request.resolver_match.url_name == 'logOut' %}active{% endif %}>Log Out</a></li>
+</ul>
