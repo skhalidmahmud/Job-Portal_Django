@@ -117,6 +117,7 @@ def accept(req, id):
             employerUser = user
         )
     user.save()
+    
     data.delete()
     return redirect("pendingAccount")
 
