@@ -20,7 +20,7 @@ def updateProfiles(req):
         data.save()
         return redirect('index')
     
-    return render(req, 'updateProfiles.html', context)
+    return render(req, 'employerUpdateProfiles.html', context)
 
 def jobPost(req):
     profile = employerProfileModel.objects.filter(employerUser=req.user).first()

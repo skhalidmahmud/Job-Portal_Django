@@ -80,27 +80,31 @@
 
 <div class="card-container" style="flex-wrap: wrap;">
     {% if user.userTypes == 'Candidate' %}
-    {% for job in data %}
-    {% if job.title is not None %}
+    {% for item in jobs_with_status %}
+    {% if item.job.title %}
     <div class="card" style="width: 30%;">
         <div class="card-content">
-            <h3>{{ job.title }}</h3>
-            <p><strong>Company Name:</strong> {{ job.employer.companyName }}</p>
-            <p><strong>Posted Employer:</strong> {{ job.employer.employerUser.username }}</p>
-            <p><strong>Description:</strong> {{ job.description|truncatewords:20 }}</p>
-            <p><strong>Requirements:</strong> {{ job.requirements|truncatewords:15 }}</p>
-            <p><strong>Salary:</strong> ${{ job.salary }}</p>
-            <p><strong>Type:</strong> {{ job.get_jobType_display }}</p>
-            <p><strong>Deadline:</strong> {{ job.deadline }}</p>
-            <form action="" method="POST" style="margin-top: 10px;">
-                {% comment %} {% url 'apply_job' job.id %} {% endcomment %}
-                {% csrf_token %}
-                <button type="submit" class="btn">Apply</button>
-            </form>
+            <h3>{{ item.job.title }}</h3>
+            <p><strong>Company Name:</strong> {{ item.job.employer.companyName }}</p>
+            <p><strong>Posted Employer:</strong> {{ item.job.employer.employerUser.username }}</p>
+            <p><strong>Description:</strong> {{ item.job.description|truncatewords:20 }}</p>
+            <p><strong>Requirements:</strong> {{ item.job.requirements|truncatewords:15 }}</p>
+            <p><strong>Salary:</strong> ${{ item.job.salary }}</p>
+            <p><strong>Type:</strong> {{ item.job.get_jobType_display }}</p>
+            <p><strong>Deadline:</strong> {{ item.job.deadline }}</p>
+
+            {% if item.applied %}
+                <button disabled class="btn" style="margin-top: 10px; background-color: #666666">Applied</button>
+            {% else %}
+                <a href="{% url 'applyJob' item.job.id %}">
+                    <button class="btn" style="margin-top: 10px;">Apply</button>
+                </a>
+            {% endif %}
         </div>
     </div>
     {% endif %}
     {% endfor %}
+
     {% else %}
     <div class="card" style="width: 30%;">
         <div class="card-content">

@@ -17,7 +17,7 @@
     }
     .form-group { margin-bottom: 18px; }
     label { display: block; margin-bottom: 6px; }
-    input[type="text"], input[type="date"], input[type="number"], input[type="file"], input[type="email"], input[type="password"], textarea {
+    input[type="text"], input[type="number"], input[type="file"], input[type="email"], input[type="password"], textarea {
         width: 100%;
         padding: 8px;
         border: 1px solid #ccc;
@@ -41,7 +41,10 @@
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
 
-        <div class="form-group">
+        
+
+
+                <div class="form-group">
             <label for="fullName">Full Name</label>
             <input type="text" name="fullName" id="fullName" value="{{data.fullName}}" maxlength="400" required>
         </div>

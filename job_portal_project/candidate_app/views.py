@@ -18,4 +18,17 @@ def updateProfiles(req):
         data.save()
 
         return redirect('index')
-    return render(req, 'updateProfiles.html', context)
+    return render(req, 'candidateUpdateProfiles.html', context)
+
+def applyJob(req, id):
+    getJob = models.jobModel.objects.get(id=id)
+    candidate = models.candidateProfileModel.objects.get(candidateUser=req.user)
+
+    jobApplication = models.jobApplicationModel(
+        job = getJob,
+        candidate= candidate,
+        status = 'Applied'
+    )
+    jobApplication.save()
+
+    return redirect('index')

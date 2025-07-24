@@ -4,7 +4,7 @@ from .views import *
 
 urlpatterns = [
     path('updateProfiles/', updateProfiles, name='candidateUpdateProfiles'),
-    # path('jobPost/', jobPost, name='jobPost'),
+    path('applyJob/<int:id>', applyJob, name='applyJob'),
     # path('addJob/', addJob, name='addJob'),
 
     # path('viewjob/<int:id>',viewjob,name='viewjob'),

@@ -7,12 +7,12 @@ class candidateProfileModel(models.Model):
     fullName = models.CharField(max_length = 100, null = True)
     adress = models.TextField(null = True)
     dateOfBirth = models.DateField(null = True)
+    lastEducation = models.CharField(max_length = 20, null = True)
+    workExprience = models.TextField(null = True)
 
 class jobApplicationModel(models.Model):
     job = models.ForeignKey(jobModel, on_delete = models.CASCADE, null = True)
     candidate = models.ForeignKey(candidateProfileModel, on_delete = models.CASCADE, null = True)
-    lastEducation = models.CharField(max_length = 20, null = True)
-    workExprience = models.TextField(null = True)
     STATUS = [
         ('Applied','Applied'),
         ('Interview','Interview'),
