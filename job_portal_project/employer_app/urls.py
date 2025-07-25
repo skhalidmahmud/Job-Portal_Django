@@ -11,5 +11,9 @@ urlpatterns = [
     path('updatejob/<int:id>',updatejob,name='updatejob'),
     path('deletejob/<int:id>',deletejob,name='deletejob'),
     
-    path('jobApplications/',jobApplications,name='jobApplications'),
+    path('jobApplications/', jobApplications, name='jobApplications'),
+
+    path('callInterview/<int:id>', callInterview, name='callInterview'),
+    path('rejectApplication/<int:id>', rejectApplication, name='rejectApplication'),
+    path('offeerApplication/<int:id>', offeerApplication, name='offeerApplication'),
 ]

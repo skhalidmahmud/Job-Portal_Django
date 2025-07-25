@@ -52,26 +52,40 @@
     <h2>Candidates Job Applications</h2>
     <table>
         <tr>
-            <th>Title</th>
-            <th>Salary</th>
-            <th>Job Type</th>
-            <th>Dead line</th>
-            <th>Posted Date</th>
+            <th>Job Title</th>
+            <th>Candidate Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Date of Birth</th>
+            <th>Actions</th>
         </tr>
 
         {% if data is None %}
-        <td colspan="6" style="text-align: center; color: #999; padding: 20px;">No Job Post found.</td>
+        <td colspan="6" style="text-align: center; color: #999; padding: 20px;">No Applications get yeat.</td>
         {% else %}
 
         {% for i in data %}
-
+        {% comment %} {% if i.status == 'Offered' or 'Rejected' %} {% endcomment %}
         <tr>
-            <td>{{ i.title }}</td>
-            <td>{{ i.salary }}</td>
-            <td>{{ i.jobType }}</td>
-            <td>{{ i.deadline }}</td>
-            <td>{{ i.postedDate }}</td>
+            <td>{{ i.job.title }}</td>
+            <td>{{ i.candidate.fullName }}</td>
+            <td>{{ i.candidate.candidateUser.phone }}</td>
+            <td>{{ i.candidate.candidateUser.email }}</td>
+            <td>{{ i.candidate.adress }}</td>
+            <td>{{ i.candidate.dateOfBirth }}</td>
+            <td>
+                {% if i.status == 'Applied' %}
+                <a href="{% url 'callInterview' i.id %}"><button style="background: rgb(0, 0, 255); color: #fff;">Call Interview</button></a>
+                {% elif i.status == 'Interview' %}
+                <a href="{% url 'offeerApplication' i.id %}"><button style="background: rgb(0, 255, 0);">Offer</button></a> |
+                <a href="{% url 'rejectApplication' i.id %}"><button style="background: rgb(255, 0, 0);">Reject</button></a>
+                {% else %}
+                <button style="background: #555; color: #fff;" disabled>{{ i.status }}</button>
+                {% endif %}
+            </td>
         </tr>
+        {% comment %} {% endif %} {% endcomment %}
 
         {% endfor %}
         {% endif %}

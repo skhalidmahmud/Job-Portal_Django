@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import *
+from candidate_app.models import *
 
 
 def updateProfiles(req):
@@ -86,5 +87,56 @@ def updatejob(req,id):
     return render(req,"updatejob.html", context)
 
 def jobApplications(req):
-    
-    return render(req, 'jobApplications.html')
+    profile = employerProfileModel.objects.get(employerUser=req.user)
+    job = jobModel.objects.filter(employer=profile)
+    data = jobApplicationModel.objects.filter(job__in=job)
+
+    context = {
+        'data': data
+    }
+    return render(req, 'jobApplications.html', context)
+
+def callInterview(req, id):
+    data = jobApplicationModel.objects.get(id=id)
+
+    newData = jobApplicationModel(
+    id=id,
+    job = data.job,
+    candidate = data.candidate,
+    status = 'Interview',
+    appliedAt = data.appliedAt,
+    lastEducation = data.lastEducation,
+    workExprience = data.workExprience
+    )
+    newData.save()
+    return redirect('jobApplications')
+
+def rejectApplication(req, id):
+    data = jobApplicationModel.objects.get(id=id)
+
+    newData = jobApplicationModel(
+    id=id,
+    job = data.job,
+    candidate = data.candidate,
+    status = 'Rejected',
+    appliedAt = data.appliedAt,
+    lastEducation = data.lastEducation,
+    workExprience = data.workExprience
+    )
+    newData.save()
+    return redirect('jobApplications')
+
+def offeerApplication(req, id):
+    data = jobApplicationModel.objects.get(id=id)
+
+    newData = jobApplicationModel(
+    id=id,
+    job = data.job,
+    candidate = data.candidate,
+    status = 'Offered',
+    appliedAt = data.appliedAt,
+    lastEducation = data.lastEducation,
+    workExprience = data.workExprience
+    )
+    newData.save()
+    return redirect('jobApplications')
