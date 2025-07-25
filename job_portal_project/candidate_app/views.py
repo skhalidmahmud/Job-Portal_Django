@@ -32,3 +32,40 @@ def applyJob(req, id):
     jobApplication.save()
 
     return redirect('index')
+
+def appliedJobs(req):
+    if models.candidateProfileModel.objects.filter(candidateUser=req.user):
+        candidate=models.candidateProfileModel.objects.get(candidateUser=req.user)
+        data = models.jobApplicationModel.objects.filter(candidate=candidate)
+        context={
+            'data':data
+        }
+    else:
+        return redirect('candidateUpdateProfiles')
+    return render(req, 'appliedJobs.html', context)
+
+def deleteAppliedJob(req, id):
+    data = models.jobApplicationModel.objects.get(id=id)
+    data.delete()
+    return redirect('appliedJobs')
+
+def updateAppliedJob(req, id):
+    data = models.jobApplicationModel.objects.get(id=id)
+    context={
+        'data':data
+    }
+    if req.method == "POST":
+        workExprience = req.POST.get('workExprience')
+        lastEducation = req.POST.get('lastEducation')
+
+        new = models.jobApplicationModel(
+            id = id,
+            job = data.job,
+            candidate = data.candidate,
+            status = data.status,
+            workExprience =workExprience,
+            lastEducation =lastEducation
+        )
+        new.save()
+        return redirect('appliedJobs')
+    return render(req, 'updateAppliedJob.html', context)

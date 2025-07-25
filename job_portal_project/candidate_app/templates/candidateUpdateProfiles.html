@@ -40,10 +40,6 @@
     <h2>Update/Add your profiles</h2>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-
-        
-
-
                 <div class="form-group">
             <label for="fullName">Full Name</label>
             <input type="text" name="fullName" id="fullName" value="{{data.fullName}}" maxlength="400" required>

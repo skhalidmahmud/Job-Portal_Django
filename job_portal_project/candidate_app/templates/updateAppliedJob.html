@@ -1,0 +1,81 @@
+{% extends "master.html" %}
+{% block body %}
+{% load static %}
+
+<style>
+    .container {
+        width: 500px;
+        margin: 50px auto;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        padding: 30px;
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        margin-top: 15px;
+        font-weight: bold;
+        color: #555;
+    }
+
+    input[type="text"],
+    textarea,
+    select {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-top: 5px;
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 80px;
+    }
+
+    input[readonly] {
+        background-color: #f0f0f0;
+    }
+
+    button {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+</style>
+
+<div class="container">
+    <h2>Update Jobs Related Info</h2>
+    <form method="POST">
+        {% csrf_token %}
+
+        <label for="lastEducation">Last Education</label>
+        <input type="text" id="lastEducation" name="lastEducation" maxlength="20" value="{{data.lastEducation}}">
+
+        <label for="workExprience">Work Exprience</label>
+        <textarea id="workExprience" name="workExprience">{{data.workExprience}}</textarea>
+
+        <button type="submit">Update</button>
+        
+    </form>
+</div>
+
+{% endblock body %}

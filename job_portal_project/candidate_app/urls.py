@@ -5,11 +5,10 @@ from .views import *
 urlpatterns = [
     path('updateProfiles/', updateProfiles, name='candidateUpdateProfiles'),
     path('applyJob/<int:id>', applyJob, name='applyJob'),
-    # path('addJob/', addJob, name='addJob'),
+    path('appliedJobs/', appliedJobs, name='appliedJobs'),
 
-    # path('viewjob/<int:id>',viewjob,name='viewjob'),
-    # path('updatejob/<int:id>',updatejob,name='updatejob'),
-    # path('deletejob/<int:id>',deletejob,name='deletejob'),
+    path('updateAppliedJob/<int:id>', updateAppliedJob, name='updateAppliedJob'),
+    path('deleteAppliedJob/<int:id>', deleteAppliedJob, name='deleteAppliedJob'),
     
     # path('jobApplications/',jobApplications,name='jobApplications'),
 ]

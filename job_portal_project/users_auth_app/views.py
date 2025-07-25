@@ -20,20 +20,25 @@ def index(req):
 
 def index(req):
     all_jobs = jobModel.objects.all()
+    if req.user.userTypes == 'Candidate':
+        if candidateProfileModel.objects.filter(candidateUser=req.user):
+            candidate = candidateProfileModel.objects.get(candidateUser=req.user)
 
-    candidate = candidateProfileModel.objects.get(candidateUser=req.user)
+            jobs_with_status = []
+            for job in all_jobs:
+                applied = jobApplicationModel.objects.filter(candidate=candidate, job=job).exists()
+                jobs_with_status.append({
+                    'job': job,
+                    'applied': applied
+                })
 
-    jobs_with_status = []
-    for job in all_jobs:
-        applied = jobApplicationModel.objects.filter(candidate=candidate, job=job).exists()
-        jobs_with_status.append({
-            'job': job,
-            'applied': applied
-        })
-
-    context = {
-        'jobs_with_status': jobs_with_status
-    }
+            context = {
+                'jobs_with_status': jobs_with_status
+            }
+        else:
+            context = None
+    else:
+        context = None
     return render(req, 'index.html', context)
 
 def signUp(req):
@@ -135,11 +140,11 @@ def accept(req, id):
         )
     else:
         data = candidateProfileModel(
-            employerUser = user
+            candidateUser = user
         )
     user.save()
     
-    data.delete()
+    data = pendingAccountModel.objects.get(id=id).delete()
     return redirect("pendingAccount")
 
 @login_required(login_url='logIn')

@@ -7,8 +7,6 @@ class candidateProfileModel(models.Model):
     fullName = models.CharField(max_length = 100, null = True)
     adress = models.TextField(null = True)
     dateOfBirth = models.DateField(null = True)
-    lastEducation = models.CharField(max_length = 20, null = True)
-    workExprience = models.TextField(null = True)
 
 class jobApplicationModel(models.Model):
     job = models.ForeignKey(jobModel, on_delete = models.CASCADE, null = True)
@@ -21,3 +19,5 @@ class jobApplicationModel(models.Model):
     ]
     status = models.CharField(choices = STATUS, max_length = 100, null = True)
     appliedAt = models.DateTimeField(auto_now_add = True, null = True)
+    lastEducation = models.CharField(max_length = 20, null = True)
+    workExprience = models.TextField(null = True)

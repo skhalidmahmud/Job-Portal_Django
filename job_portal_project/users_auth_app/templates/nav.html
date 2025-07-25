@@ -13,6 +13,7 @@
 
     {% if user.userTypes == 'Candidate' %}
     <li><a href="{% url 'candidateUpdateProfiles' %}" class = {% if request.resolver_match.url_name == 'candidateUpdateProfiles' %}active{% endif %}>Update Profile</a></li>
+    <li><a href="{% url 'appliedJobs' %}" class = {% if request.resolver_match.url_name == 'appliedJobs' %}active{% endif %}>Applied Jobs</a></li>
     {% endif %}
     <li><a href="{% url 'changePassword' %}" class = {% if request.resolver_match.url_name == 'changePassword' %}active{% endif %}>Change Password</a></li>
     <li><a href="{% url 'logOut' %}" class = {% if request.resolver_match.url_name == 'logOut' %}active{% endif %}>Log Out</a></li>
