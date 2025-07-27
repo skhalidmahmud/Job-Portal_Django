@@ -7,16 +7,6 @@ from candidate_app.models import *
 from django.contrib.auth.decorators import login_required 
 from django.contrib import messages
 
-# def index(req):
-#     data = jobModel.objects.all()
-#     candidates = candidateProfileModel.objects.get(candidateUser=req.user)
-#     jobApplication = jobApplicationModel.objects.get(candidate=candidates)
-#     context = {
-#         'data':data,
-#         'jobApplication':jobApplication
-#     }
-#     return render(req, 'index.html', context)
-
 @login_required(login_url='logIn')
 def index(req):
     all_jobs = jobModel.objects.all()
