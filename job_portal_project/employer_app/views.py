@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import *
 from candidate_app.models import *
+from django.contrib.auth.decorators import login_required 
 
-
+@login_required(login_url='logIn')
 def updateProfiles(req):
     data = employerProfileModel.objects.filter(employerUser=req.user).first()
     context = {
@@ -23,6 +24,7 @@ def updateProfiles(req):
     
     return render(req, 'employerUpdateProfiles.html', context)
 
+@login_required(login_url='logIn')
 def jobPost(req):
     profile = employerProfileModel.objects.filter(employerUser=req.user).first()
 
@@ -33,6 +35,7 @@ def jobPost(req):
 
     return render(req, 'jobPost.html', context)
 
+@login_required(login_url='logIn')
 def addJob(req):
     profile = employerProfileModel.objects.filter(employerUser=req.user).first()
     
@@ -56,10 +59,12 @@ def addJob(req):
         return redirect('jobPost')
     return render(req, 'addJob.html')
 
+@login_required(login_url='logIn')
 def deletejob(req, id):
     data = jobModel.objects.get(id=id).delete()
     return redirect ('jobPost')
 
+@login_required(login_url='logIn')
 def viewjob(req,id):
     data = jobModel.objects.get(id=id)
     context={
@@ -67,6 +72,7 @@ def viewjob(req,id):
     }
     return render(req,"viewjob.html", context)
 
+@login_required(login_url='logIn')
 def updatejob(req,id):
     data=jobModel.objects.get(id=id)
     context={
@@ -86,6 +92,7 @@ def updatejob(req,id):
 
     return render(req,"updatejob.html", context)
 
+@login_required(login_url='logIn')
 def jobApplications(req):
     profile = employerProfileModel.objects.get(employerUser=req.user)
     job = jobModel.objects.filter(employer=profile)
@@ -96,6 +103,7 @@ def jobApplications(req):
     }
     return render(req, 'jobApplications.html', context)
 
+@login_required(login_url='logIn')
 def callInterview(req, id):
     data = jobApplicationModel.objects.get(id=id)
 
@@ -111,6 +119,7 @@ def callInterview(req, id):
     newData.save()
     return redirect('jobApplications')
 
+@login_required(login_url='logIn')
 def rejectApplication(req, id):
     data = jobApplicationModel.objects.get(id=id)
 
@@ -126,6 +135,7 @@ def rejectApplication(req, id):
     newData.save()
     return redirect('jobApplications')
 
+@login_required(login_url='logIn')
 def offeerApplication(req, id):
     data = jobApplicationModel.objects.get(id=id)
 

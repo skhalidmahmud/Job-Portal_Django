@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from . import models
+from django.contrib.auth.decorators import login_required 
 
+@login_required(login_url='logIn')
 def updateProfiles(req):
     data = models.candidateProfileModel.objects.filter(candidateUser=req.user).first()
     context = {
@@ -20,6 +22,7 @@ def updateProfiles(req):
         return redirect('index')
     return render(req, 'candidateUpdateProfiles.html', context)
 
+@login_required(login_url='logIn')
 def applyJob(req, id):
     getJob = models.jobModel.objects.get(id=id)
     candidate = models.candidateProfileModel.objects.get(candidateUser=req.user)
@@ -33,6 +36,7 @@ def applyJob(req, id):
 
     return redirect('index')
 
+@login_required(login_url='logIn')
 def appliedJobs(req):
     if models.candidateProfileModel.objects.filter(candidateUser=req.user):
         candidate=models.candidateProfileModel.objects.get(candidateUser=req.user)
@@ -44,11 +48,13 @@ def appliedJobs(req):
         return redirect('candidateUpdateProfiles')
     return render(req, 'appliedJobs.html', context)
 
+@login_required(login_url='logIn')
 def deleteAppliedJob(req, id):
     data = models.jobApplicationModel.objects.get(id=id)
     data.delete()
     return redirect('appliedJobs')
 
+@login_required(login_url='logIn')
 def updateAppliedJob(req, id):
     data = models.jobApplicationModel.objects.get(id=id)
     context={

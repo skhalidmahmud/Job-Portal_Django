@@ -7,34 +7,37 @@ from candidate_app.models import *
 from django.contrib.auth.decorators import login_required 
 from django.contrib import messages
 
+# def index(req):
+#     data = jobModel.objects.all()
+#     candidates = candidateProfileModel.objects.get(candidateUser=req.user)
+#     jobApplication = jobApplicationModel.objects.get(candidate=candidates)
+#     context = {
+#         'data':data,
+#         'jobApplication':jobApplication
+#     }
+#     return render(req, 'index.html', context)
+
 @login_required(login_url='logIn')
 def index(req):
-    data = jobModel.objects.all()
-    candidates = candidateProfileModel.objects.get(candidateUser=req.user)
-    jobApplication = jobApplicationModel.objects.get(candidate=candidates)
-    context = {
-        'data':data,
-        'jobApplication':jobApplication
-    }
-    return render(req, 'index.html', context)
-
-def index(req):
     all_jobs = jobModel.objects.all()
-    if req.user.userTypes == 'Candidate':
-        if candidateProfileModel.objects.filter(candidateUser=req.user):
-            candidate = candidateProfileModel.objects.get(candidateUser=req.user)
+    if req.user.is_authenticated:
+        if req.user.userTypes == 'Candidate':
+            if candidateProfileModel.objects.filter(candidateUser=req.user):
+                candidate = candidateProfileModel.objects.get(candidateUser=req.user)
 
-            jobs_with_status = []
-            for job in all_jobs:
-                applied = jobApplicationModel.objects.filter(candidate=candidate, job=job).exists()
-                jobs_with_status.append({
-                    'job': job,
-                    'applied': applied
-                })
+                jobs_with_status = []
+                for job in all_jobs:
+                    applied = jobApplicationModel.objects.filter(candidate=candidate, job=job).exists()
+                    jobs_with_status.append({
+                        'job': job,
+                        'applied': applied
+                    })
 
-            context = {
-                'jobs_with_status': jobs_with_status
-            }
+                context = {
+                    'jobs_with_status': jobs_with_status
+                }
+            else:
+                context = None
         else:
             context = None
     else:
