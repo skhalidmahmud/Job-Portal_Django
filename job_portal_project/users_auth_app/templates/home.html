@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JobConnect - Find Your Dream Job">
+    <meta name="keywords" content="HTML, CSS, JavaScript, meta tags, SEO">
+    <meta name="author" content="Riju Mia">
+    <meta name="copyright" content="Job Connect">
+    <meta http-equiv="Content-Language" content="en">
+    <!-- Theme Color for Mobile Browsers -->
+    <meta name="theme-color" content="#0c62ecff">
+    <!-- Microsoft Tiles (for Windows apps) -->
+    <meta name="msapplication-TileColor" content="#0f66caff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+
+
+    <title>JobConnect - Find Your Dream Job</title>
+    <link rel="shortcut icon" href="https://images.icon-icons.com/1148/PNG/512/1486503783-bag-briefcase-business-case-job-portfolio-suitcase_81278.png" type="image/x-icon">    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #7c3aed;
+            --accent-color: #06b6d4;
+            --dark-color: #1e293b;
+            --light-bg: #f8fafc;
+            --text-muted: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--dark-color);
+            overflow-x: hidden;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color) !important;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--dark-color) !important;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        .btn-primary-custom {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            padding: 0.6rem 1.5rem;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease 0.2s;
+            animation-fill-mode: both;
+        }
+
+        /* Search Box */
+        .search-box {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 0.8s ease 0.4s;
+            animation-fill-mode: both;
+        }
+
+        .search-input {
+            border: 2px solid #e2e8f0;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .btn-search {
+            background: var(--primary-color);
+            border: none;
+            padding: 0.2rem 1.5rem;
+            padding-left: 1rem;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-search:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 5rem 0;
+            background: var(--light-bg);
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Featured Jobs */
+        .featured-jobs {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+        }
+
+        .job-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .job-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .company-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 0.75rem;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+        .job-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+
+        .company-name {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .job-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .job-tag {
+            background: #e0e7ff;
+            color: var(--primary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .job-salary {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 1.125rem;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 5rem 0;
+            background: var(--light-bg);
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+        }
+
+        .step-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 5rem 0;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-info h6 {
+            margin-bottom: 0;
+            font-weight: 600;
+        }
+
+        .author-info small {
+            color: var(--text-muted);
+        }
+
+        /* Companies */
+        .companies-section {
+            padding: 3rem 0;
+            background: var(--light-bg);
+        }
+
+        .company-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 80px;
+            filter: grayscale(100%);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+
+        .company-item:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+        }
+
+        .newsletter-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .newsletter-input:focus {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: white;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-link {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: white;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .search-box {
+                padding: 1.5rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-briefcase-fill me-2"></i>JobConnect
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#jobs">Jobs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#companies">Companies</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-outline-primary">Sign In</button>
+                    <button class="btn btn-primary-custom">Post a Job</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="hero-bg-pattern"></div>
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="hero-title">Find Your Dream Job Today</h1>
+                    <p class="hero-subtitle">Connect with top companies and discover opportunities that match your skills and aspirations.</p>
+                    
+                    <div class="search-box">
+                        <form class="row g-3">
+                            <div class="col-md-5">
+                                <input type="text" class="form-control search-input" placeholder="Job title or keyword">
+                            </div>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control search-input" placeholder="Location or remote">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-search w-100">
+                                    <i class="bi bi-search me-2"></i>Search
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="mt-4 d-flex gap-4">
+                        <div>
+                            <i class="bi bi-check-circle-fill text-white me-2"></i>
+                            <span class="text-white">100K+ Active Jobs</span>
+                        </div>
+                        <div>
+                            <i class="bi bi-check-circle-fill text-white me-2"></i>
+                            <span class="text-white">50K+ Companies</span>
+                        </div>
+                        <div>
+                            <i class="bi bi-check-circle-fill text-white me-2"></i>
+                            <span class="text-white">1M+ Candidates</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://picsum.photos/seed/hero/600/400" alt="Hero" class="img-fluid rounded-4 shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-3 col-6">
+                    <div class="stat-card fade-in">
+                        <i class="bi bi-briefcase stat-icon"></i>
+                        <div class="stat-number" data-target="125000">0</div>
+                        <p class="mb-0">Active Jobs</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-card fade-in">
+                        <i class="bi bi-building stat-icon"></i>
+                        <div class="stat-number" data-target="58000">0</div>
+                        <p class="mb-0">Companies</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-card fade-in">
+                        <i class="bi bi-people stat-icon"></i>
+                        <div class="stat-number" data-target="1200000">0</div>
+                        <p class="mb-0">Candidates</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-card fade-in">
+                        <i class="bi bi-trophy stat-icon"></i>
+                        <div class="stat-number" data-target="98">0</div>
+                        <p class="mb-0">% Success Rate</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Jobs -->
+    <section class="featured-jobs" id="jobs">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Featured Jobs</h2>
+                <p class="section-subtitle">Discover the latest opportunities from top companies</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="job-card fade-in">
+                        <img src="https://picsum.photos/seed/company1/60/60" alt="Company" class="company-logo">
+                        <h5 class="job-title">Senior Frontend Developer</h5>
+                        <p class="company-name">TechCorp Inc.</p>
+                        <div class="job-tags">
+                            <span class="job-tag">Remote</span>
+                            <span class="job-tag">Full-time</span>
+                            <span class="job-tag">React</span>
+                        </div>
+                        <p class="job-salary">$120k - $150k</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="job-card fade-in">
+                        <img src="https://picsum.photos/seed/company2/60/60" alt="Company" class="company-logo">
+                        <h5 class="job-title">Product Manager</h5>
+                        <p class="company-name">Innovation Labs</p>
+                        <div class="job-tags">
+                            <span class="job-tag">Hybrid</span>
+                            <span class="job-tag">Full-time</span>
+                            <span class="job-tag">SaaS</span>
+                        </div>
+                        <p class="job-salary">$130k - $160k</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="job-card fade-in">
+                        <img src="https://picsum.photos/seed/company3/60/60" alt="Company" class="company-logo">
+                        <h5 class="job-title">UX Designer</h5>
+                        <p class="company-name">Design Studio</p>
+                        <div class="job-tags">
+                            <span class="job-tag">On-site</span>
+                            <span class="job-tag">Full-time</span>
+                            <span class="job-tag">Figma</span>
+                        </div>
+                        <p class="job-salary">$90k - $120k</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="job-card fade-in">
+                        <img src="https://picsum.photos/seed/company4/60/60" alt="Company" class="company-logo">
+                        <h5 class="job-title">Data Scientist</h5>
+                        <p class="company-name">DataTech Solutions</p>
+                        <div class="job-tags">
+                            <span class="job-tag">Remote</span>
+                            <span class="job-tag">Full-time</span>
+                            <span class="job-tag">Python</span>
+                        </div>
+                        <p class="job-salary">$140k - $180k</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="job-card fade-in">
+                        <img src="https://picsum.photos/seed/company5/60/60" alt="Company" class="company-logo">
+                        <h5 class="job-title">DevOps Engineer</h5>
+                        <p class="company-name">Cloud Systems</p>
+                        <div class="job-tags">
+                            <span class="job-tag">Remote</span>
+                            <span class="job-tag">Full-time</span>
+                            <span class="job-tag">AWS</span>
+                        </div>
+                        <p class="job-salary">$130k - $170k</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="job-card fade-in">
+                        <img src="https://picsum.photos/seed/company6/60/60" alt="Company" class="company-logo">
+                        <h5 class="job-title">Marketing Manager</h5>
+                        <p class="company-name">Growth Agency</p>
+                        <div class="job-tags">
+                            <span class="job-tag">Hybrid</span>
+                            <span class="job-tag">Full-time</span>
+                            <span class="job-tag">Digital</span>
+                        </div>
+                        <p class="job-salary">$100k - $130k</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <button class="btn btn-primary-custom btn-lg">View All Jobs</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">How It Works</h2>
+                <p class="section-subtitle">Get hired in 4 simple steps</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-3 col-6">
+                    <div class="step-card fade-in">
+                        <div class="step-number">1</div>
+                        <i class="bi bi-person-plus-fill step-icon"></i>
+                        <h5>Create Profile</h5>
+                        <p class="text-muted">Sign up and build your professional profile</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-6">
+                    <div class="step-card fade-in">
+                        <div class="step-number">2</div>
+                        <i class="bi bi-search step-icon"></i>
+                        <h5>Find Jobs</h5>
+                        <p class="text-muted">Browse thousands of job opportunities</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-6">
+                    <div class="step-card fade-in">
+                        <div class="step-number">3</div>
+                        <i class="bi bi-send-fill step-icon"></i>
+                        <h5>Apply</h5>
+                        <p class="text-muted">Submit your application with one click</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-6">
+                    <div class="step-card fade-in">
+                        <div class="step-number">4</div>
+                        <i class="bi bi-hand-thumbs-up-fill step-icon"></i>
+                        <h5>Get Hired</h5>
+                        <p class="text-muted">Connect with employers and start your journey</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Success Stories</h2>
+                <p class="section-subtitle">Hear from people who found their dream jobs</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="testimonial-card fade-in">
+                        <p class="testimonial-text">"JobConnect helped me find my dream job as a Senior Developer. The platform is intuitive and the opportunities are endless!"</p>
+                        <div class="testimonial-author">
+                            <img src="https://picsum.photos/seed/person1/50/50" alt="Author" class="author-avatar">
+                            <div class="author-info">
+                                <h6>Sarah Johnson</h6>
+                                <small>Senior Developer at TechCorp</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="testimonial-card fade-in">
+                        <p class="testimonial-text">"As a hiring manager, JobConnect has made recruiting so much easier. We've found amazing talent through this platform."</p>
+                        <div class="testimonial-author">
+                            <img src="https://picsum.photos/seed/person2/50/50" alt="Author" class="author-avatar">
+                            <div class="author-info">
+                                <h6>Michael Chen</h6>
+                                <small>HR Director at Innovation Labs</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="testimonial-card fade-in">
+                        <p class="testimonial-text">"I landed my first remote job through JobConnect! The process was smooth and I'm now working with a great team."</p>
+                        <div class="testimonial-author">
+                            <img src="https://picsum.photos/seed/person3/50/50" alt="Author" class="author-avatar">
+                            <div class="author-info">
+                                <h6>Emily Rodriguez</h6>
+                                <small>UX Designer at Design Studio</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Companies Section -->
+    <section class="companies-section" id="companies">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h3 class="mb-3">Trusted by Leading Companies</h3>
+            </div>
+            
+            <div class="row g-4 align-items-center">
+                <div class="col-6 col-md-3">
+                    <div class="company-item">
+                        <i class="bi bi-google fs-1"></i>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="company-item">
+                        <i class="bi bi-microsoft fs-1"></i>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="company-item">
+                        <i class="bi bi-amazon fs-1"></i>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="company-item">
+                        <i class="bi bi-apple fs-1"></i>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="company-item">
+                        <i class="bi bi-meta fs-1"></i>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="company-item">
+                        <i class="bi bi-browser-safari fs-1"></i>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="company-item">
+                        <i class="bi bi-slack fs-1"></i>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="company-item">
+                        <i class="bi bi-spotify fs-1"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container text-center">
+            <h2 class="mb-3">Stay Updated</h2>
+            <p class="mb-4">Get the latest job alerts and career tips delivered to your inbox</p>
+            
+            <form class="newsletter-form">
+                <div class="input-group">
+                    <input type="email" class="form-control newsletter-input" placeholder="Enter your email">
+                    <button class="btn btn-light" type="submit">Subscribe</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row g-4 mb-4">
+                <div class="col-lg-4">
+                    <h5 class="mb-3">
+                        <i class="bi bi-briefcase-fill me-2"></i>JobConnect
+                    </h5>
+                    <p class="text-muted">Connecting talent with opportunity since 2020. Your dream job is just a click away.</p>
+                    <div class="d-flex gap-3 mt-3">
+                        <a href="#" class="social-icon">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="bi bi-twitter"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="mb-3">For Job Seekers</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="footer-link">Browse Jobs</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">Career Advice</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">Resume Builder</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">Job Alerts</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="mb-3">For Employers</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="footer-link">Post a Job</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">Search Candidates</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">Pricing</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">Resources</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="mb-3">Company</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="footer-link">About Us</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">Contact</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">Blog</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">Press</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="mb-3">Support</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="footer-link">Help Center</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">Terms of Service</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <hr class="border-secondary">
+            
+            <div class="text-center py-3">
+                <p class="mb-0 text-white">&copy; 2025 JobConnect. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Animated counter for stats
+        function animateCounter() {
+            const counters = document.querySelectorAll('.stat-number');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const increment = target / 200;
+                let current = 0;
+                
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.textContent = Math.ceil(current).toLocaleString();
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target.toLocaleString();
+                    }
+                };
+                
+                updateCounter();
+            });
+        }
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Trigger counter animation for stats
+                    if (entry.target.classList.contains('stat-card')) {
+                        animateCounter();
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Form submission handlers
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Add your form submission logic here
+                alert('Form submitted successfully!');
+                this.reset();
+            });
+        });
+
+        // Add hover effect to job cards
+        document.querySelectorAll('.job-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Add your job card click logic here
+                console.log('Job card clicked');
+            });
+        });
+    </script>
+</body>
+</html>
