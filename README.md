@@ -110,7 +110,7 @@ tzdata==2025.2
 
 ## 👤 Author
 
-Developed by [Khalid Mahmud](https://www.linkedin.com/in/skhalidmahmud)
+Developed by [Khalid Mahmud](https://www.linkedin.com/in/skhalidmahmud) & [Riju](https://github.com/rijumia/)
 
 ---
 
