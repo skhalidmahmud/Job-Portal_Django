@@ -94,6 +94,7 @@ Job-Portal_Django-main/
 └── LICENSE
 ```
 
+
 ---
 
 ## 📜 Requirements
